@@ -1,0 +1,81 @@
+kod swaggera do surveyRoutes do generowania example dla POST /survey z tylko jednym pytaniem
+
+
+/**
+ * @swagger
+ * /surveys:
+ *   post:
+ *     summary: Stwórz nową ankietę
+ *     description: Dodaje nową ankietę do bazy danych.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: Tytuł ankiety.
+ *                 example: "Pączki"
+ *               author:
+ *                 type: string
+ *                 description: ID użytkownika który stworzył ankietę.
+ *                 example: NULL
+ *               questions:
+ *                 type: array
+ *                 description: Lista pytań które zostaną dodane do ankiety.
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     text:
+ *                       type: string
+ *                       description: Tekst pytania.
+ *                       example: "Czy lubisz pączki?"
+ *                     question_type:
+ *                       type: string
+ *                       description: Typ pytania (np. multiple_choice, text, single_choice).
+ *                       example: "Single_choice"
+ *                     options:
+ *                       type: array
+ *                       description: Możliwe opcje odpowiedzi (tylko dla pytań typu multiple_choice).
+ *                       items:
+ *                         type: string
+ *                       example: ["Tak!", "Nie!", "Zjem jak ktoś mi da"]
+ *     responses:
+ *       201:
+ *         description: Ankieta poprawnie utworzona.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   description: The unique ID of the newly created survey.
+ *                 title:
+ *                   type: string
+ *                 created_at:
+ *                   type: string
+ *                   format: date-time
+ *                 author_id:
+ *                   type: string
+ *                 questions:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         description: The unique ID of the question.
+ *                       text:
+ *                         type: string
+ *                       type:
+ *                         type: string
+ *                       options:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *       400:
+ *         description: Bad request - invalid input data.
+ */
